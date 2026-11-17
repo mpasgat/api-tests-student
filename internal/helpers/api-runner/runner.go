@@ -31,14 +31,14 @@ func GetRunner() *ApiTest {
 	return New()
 }
 
-// Auth Установка Bearer token-а для прохождения авторизации на приватные ручки
+// Auth установка Bearer token для прохождения авторизации на приватные ручки
 func (at *ApiTest) Auth(token string) *ApiTest {
 	at.token = token
 	return at
 }
 
 func (at *ApiTest) Create() *apitest.APITest {
-	apitestNew := apitest.New().EnableNetworking()
+	apitestNew := apitest.New().EnableNetworking(&http.Client{Transport: retryTransport{next: http.DefaultTransport}})
 	if os.Getenv("DEBUG") == "true" {
 		apitestNew = apitestNew.Debug()
 	}

@@ -63,7 +63,7 @@ func (s *TestSuite) TestSearchByTitle() {
 	})
 }
 
-// Positive: Ищем объявление по подстроке из начала, середины, конца названия и в разных регистрах
+// Positive где ищем объявление по подстроке из начала, середины, конца названия и в разных регистрах
 func (s *TestSuite) TestSearchByTitle_Substring() {
 	cases := []struct {
 		name   string
